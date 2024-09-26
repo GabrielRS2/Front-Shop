@@ -1,26 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from "react";
+import { OpenModalContext } from "./Providers/OpenModal";
+import { Routes } from "./Routes";
+import { GlobalStyle } from "./Styles/global";
+import { Modal } from "./Styles/Modal";
 
-function App() {
+export const App = () => {
+  const { isOpenModal } = useContext(OpenModalContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ position: "relative" }}>
+      {isOpenModal && <Modal />}
+      <GlobalStyle />
+      <Routes />
     </div>
   );
-}
-
-export default App;
+};
